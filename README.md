@@ -40,12 +40,29 @@ delivered separately (Plan 2).
   **portal**, the **Leads CRM** (admin), and the **employer self-enroll API**
   are separate workstreams (Plan 2 / sub-projects B–D), not in this repo.
 
-## Deploy
+## Deploy (AWS — same pattern as the B2C `clearcare-marketing` site)
 
-Static SPA — host on Vercel (or any static host). `vercel.json` provides the
-SPA rewrite so client-side routes resolve. Point `clearcaredentalenterprise.com`
-DNS at the deployment. DNS + the `app.` subdomain are an infra task coordinated
-with the app deployment.
+Static SPA. Build locally/CI then serve the `dist/` over nginx on the existing
+EC2 host (the same box that serves the consumer marketing site + app):
+
+1. `npm ci && npm run build` → produces `dist/`.
+2. Copy `dist/` to the server (e.g. `/var/www/enterprise`).
+3. nginx server block for `clearcaredentalenterprise.com` with a SPA fallback so
+   client routes resolve:
+   ```nginx
+   server {
+     server_name clearcaredentalenterprise.com www.clearcaredentalenterprise.com;
+     root /var/www/enterprise;
+     index index.html;
+     location / { try_files $uri $uri/ /index.html; }
+   }
+   ```
+4. `certbot` for TLS, then point the domain's DNS at the EC2 IP.
+
+The `app.clearcaredentalenterprise.com` subdomain (B2B app face) is served by the
+existing app with hostname-based branding — separate workstream (sub-project B).
+(`vercel.json` is kept only as a convenience for ad-hoc static previews; AWS is
+the real target.)
 
 See `docs/superpowers/specs/` and `docs/superpowers/plans/` for the full design
 and implementation plan.

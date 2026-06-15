@@ -10,6 +10,11 @@ import Button from '../components/Button';
 import Seo from '../components/Seo';
 import CTASection from '../components/CTASection';
 import ProofSlots from '../components/ProofSlots';
+import FeatureGrid from '../components/FeatureGrid';
+import MemberExperience from '../components/MemberExperience';
+import SecurityCompliance from '../components/SecurityCompliance';
+import FAQ from '../components/FAQ';
+import { Stagger, StaggerItem } from '../components/Stagger';
 import styles from './SegmentPage.module.css';
 
 const MAP = { employers, tpa, dso, associations, whiteLabel };
@@ -17,11 +22,12 @@ const MAP = { employers, tpa, dso, associations, whiteLabel };
 export default function SegmentPage({ slug }) {
   const c = useMemo(() => MAP[slug], [slug]);
   if (!c) return null;
+
   return (
     <>
       <Seo title={c.h1} description={c.subhead} />
 
-      {/* Hero */}
+      {/* 1. Hero */}
       <Section variant="navy">
         <Reveal>
           <div className="eyebrow-plain">{c.eyebrow}</div>
@@ -29,52 +35,99 @@ export default function SegmentPage({ slug }) {
           <p className={styles.sub}>{c.subhead}</p>
           <div className={styles.actions}>
             <Button to="/demo">Book a demo</Button>
-            {c.selfServe && <Button variant="secondary" to="/enroll">Get started</Button>}
+            {c.selfServe && (
+              <Button variant="secondary" to="/enroll">
+                Get started
+              </Button>
+            )}
           </div>
         </Reveal>
-      </Section>
 
-      {/* The challenge */}
-      <Section>
-        <Reveal><h2 className={styles.sectionTitle}>The challenge</h2></Reveal>
-        <ul className={styles.pains}>
-          {c.pains.map((p, i) => (
-            <Reveal key={i} delay={i * 0.05}>
-              <li>{p}</li>
-            </Reveal>
+        {/* Hero stats row */}
+        <Stagger className={styles.heroStats}>
+          {c.heroStats.map((stat, i) => (
+            <StaggerItem key={i}>
+              <div className={styles.statChip}>
+                <span className={styles.statValue}>{stat.value}</span>
+                <span className={styles.statLabel}>{stat.label}</span>
+              </div>
+            </StaggerItem>
           ))}
-        </ul>
+        </Stagger>
       </Section>
 
-      {/* How it works */}
-      <Section variant="alt">
-        <Reveal><h2 className={styles.sectionTitle}>How it works</h2></Reveal>
-        <div className={styles.grid3}>
+      {/* 2. The challenge */}
+      <Section>
+        <Reveal>
+          <h2 className={styles.sectionTitle}>The challenge</h2>
+        </Reveal>
+        <Stagger className={styles.pains}>
+          {c.pains.map((p, i) => (
+            <StaggerItem key={i}>
+              <div className={styles.painItem}>{p}</div>
+            </StaggerItem>
+          ))}
+        </Stagger>
+      </Section>
+
+      {/* 3. Why [segment] — FeatureGrid */}
+      <FeatureGrid
+        eyebrow={c.why.eyebrow}
+        title={c.why.title}
+        subtitle={c.why.subtitle}
+        items={c.why.items}
+        columns={3}
+        variant="alt"
+      />
+
+      {/* 4. How it works */}
+      <Section>
+        <Reveal>
+          <h2 className={styles.sectionTitle}>How it works</h2>
+        </Reveal>
+        <Stagger className={styles.grid3}>
           {c.how.map((h, i) => (
-            <Reveal key={i} delay={i * 0.08}>
+            <StaggerItem key={i}>
               <div className={styles.card}>
                 <div className={styles.num}>{i + 1}</div>
                 <h3>{h.title}</h3>
                 <p>{h.body}</p>
               </div>
-            </Reveal>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </Section>
 
-      {/* Benefits */}
-      <Section>
-        <Reveal><h2 className={styles.sectionTitle}>Why Clear Care</h2></Reveal>
-        <div className={styles.benefits}>
+      {/* 5. Benefits */}
+      <Section variant="alt">
+        <Reveal>
+          <h2 className={styles.sectionTitle}>What you get</h2>
+        </Reveal>
+        <Stagger className={styles.benefits}>
           {c.benefits.map((b, i) => (
-            <Reveal key={i} delay={i * 0.04}>
-              <div className={styles.benefit}>&#10003; {b}</div>
-            </Reveal>
+            <StaggerItem key={i}>
+              <div className={styles.benefit}>
+                <span className={styles.check}>&#10003;</span>
+                {b}
+              </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </Section>
 
+      {/* 6. Member experience */}
+      <MemberExperience />
+
+      {/* 7. Security & compliance */}
+      <SecurityCompliance />
+
+      {/* 8. Proof (stats + logos + testimonial) */}
       <ProofSlots />
+
+      {/* 9. FAQ */}
+      <FAQ items={c.faqs} />
+
+      {/* 10. CTA band */}
       <CTASection title={c.ctaTitle} sub={c.ctaSub} segment={c.slug} />
     </>
   );
