@@ -34,16 +34,16 @@ export default function Footer() {
 
           <div className={styles.col}>
             <h4>Legal</h4>
-            <Link to="/privacy">Privacy Policy</Link>
-            <Link to="/terms">Terms of Service</Link>
+            <a href="https://clearcaredentalgroup.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+            <a href="https://clearcaredentalgroup.com/terms" target="_blank" rel="noopener noreferrer">Terms of Service</a>
           </div>
         </div>
 
         <div className={styles.bottom}>
           <span className={styles.copy}>© {year} Clear Care Dental Enterprise. All rights reserved.</span>
           <div className={styles.legal}>
-            <Link to="/privacy">Privacy</Link>
-            <Link to="/terms">Terms</Link>
+            <a href="https://clearcaredentalgroup.com/privacy" target="_blank" rel="noopener noreferrer">Privacy</a>
+            <a href="https://clearcaredentalgroup.com/terms" target="_blank" rel="noopener noreferrer">Terms</a>
           </div>
         </div>
       </div>

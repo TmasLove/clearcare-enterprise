@@ -102,7 +102,7 @@ export default function EnrollPage() {
                         onChange={set('name')}
                         placeholder="Jane Smith"
                       />
-                      {errors.name && <em className={styles.err}>{errors.name}</em>}
+                      {errors.name && <em className={styles.err} role="alert">{errors.name}</em>}
                     </label>
 
                     <label className={styles.field}>
@@ -114,7 +114,7 @@ export default function EnrollPage() {
                         onChange={set('email')}
                         placeholder="jane@company.com"
                       />
-                      {errors.email && <em className={styles.err}>{errors.email}</em>}
+                      {errors.email && <em className={styles.err} role="alert">{errors.email}</em>}
                     </label>
 
                     <label className={styles.field}>
@@ -126,7 +126,7 @@ export default function EnrollPage() {
                         onChange={set('company')}
                         placeholder="Acme Corp"
                       />
-                      {errors.company && <em className={styles.err}>{errors.company}</em>}
+                      {errors.company && <em className={styles.err} role="alert">{errors.company}</em>}
                     </label>
 
                     <button

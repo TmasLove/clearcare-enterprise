@@ -53,7 +53,7 @@ export default function DemoForm({ defaultSegment = 'other', sourcePage = 'demo'
       <div className={styles.row}>
         <Field label="Company size">
           <select value={form.companySize} onChange={set('companySize')}>
-            <option>1-50</option><option>51-200</option><option>201-1000</option><option>1000+</option>
+            <option value="1-50">1-50</option><option value="51-200">51-200</option><option value="201-1000">201-1000</option><option value="1000+">1000+</option>
           </select>
         </Field>
         <Field label="You are a…">
@@ -68,5 +68,5 @@ export default function DemoForm({ defaultSegment = 'other', sourcePage = 'demo'
   );
 }
 function Field({ label, err, children }) {
-  return (<label className={styles.field}><span>{label}</span>{children}{err && <em className={styles.err}>{err}</em>}</label>);
+  return (<label className={styles.field}><span>{label}</span>{children}{err && <em className={styles.err} role="alert">{err}</em>}</label>);
 }
