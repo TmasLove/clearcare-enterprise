@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import Logo from './Logo';
 import styles from './Footer.module.css';
 
-const APP = import.meta.env.VITE_APP_URL || 'https://app.clearcaredentalenterprise.com';
 const year = new Date().getFullYear();
 
 export default function Footer() {
@@ -27,7 +26,7 @@ export default function Footer() {
           <div className={styles.col}>
             <h4>Company</h4>
             <Link to="/demo">Book a Demo</Link>
-            <a href={`${APP}/login`}>Login</a>
+            <Link to="/login">Login</Link>
             <a href="https://clearcaredentalgroup.com" target="_blank" rel="noopener noreferrer">
               Clear Care Dental
             </a>

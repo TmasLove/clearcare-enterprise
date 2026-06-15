@@ -5,8 +5,6 @@ import Button from './Button';
 import ThemeToggle from './ThemeToggle';
 import styles from './Nav.module.css';
 
-const APP = import.meta.env.VITE_APP_URL || 'https://app.clearcaredentalenterprise.com';
-
 const SOLUTIONS = [
   { label: 'All Solutions', to: '/solutions' },
   { label: 'Employers', to: '/solutions/employers' },
@@ -28,7 +26,7 @@ export default function Nav() {
 
         <div className={styles.links}>
           <div className={styles.dropdownWrap}>
-            <button className={styles.link}>Solutions ▾</button>
+            <button className={styles.link} aria-haspopup="true">Solutions ▾</button>
             <div className={styles.dropdown}>
               {SOLUTIONS.map(s => (
                 <Link key={s.to} to={s.to} className={styles.dropItem}>{s.label}</Link>
@@ -40,7 +38,7 @@ export default function Nav() {
 
         <div className={styles.right}>
           <ThemeToggle />
-          <a href={`${APP}/login`} className={styles.login}>Login</a>
+          <Link to="/login" className={styles.login}>Login</Link>
           <Button to="/demo">Book a demo</Button>
         </div>
 
@@ -60,7 +58,7 @@ export default function Nav() {
           <Link key={s.to} to={s.to} className={styles.mobileLink} onClick={() => setMobileOpen(false)}>{s.label}</Link>
         ))}
         <Link to="/demo" className={styles.mobileLink} onClick={() => setMobileOpen(false)}>Demo</Link>
-        <a href={`${APP}/login`} className={styles.mobileLink}>Login</a>
+        <Link to="/login" className={styles.mobileLink}>Login</Link>
         <div style={{ paddingTop: 8 }}>
           <Button to="/demo">Book a demo</Button>
         </div>
