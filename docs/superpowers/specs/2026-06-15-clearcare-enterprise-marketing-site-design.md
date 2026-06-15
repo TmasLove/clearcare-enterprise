@@ -115,6 +115,7 @@ Every new Lead emails **troldan@, jterry@, jordan@clearcaredentalgroup.com** (re
 ## 7. Visual direction & motion
 
 - **Direction C (hybrid):** corporate navy structure (`#0F172A`, `#1B4F72`) with Clear Care's signature accents — sky `#0EA5E9`, emerald `#10B981`. Reads "enterprise infrastructure partner" while staying unmistakably Clear Care. Light/dark mode like the consumer site.
+- **Logo (sub-brand descriptor):** keep the master Clear Care Dental logo **untouched** and place an **"Enterprise"** descriptor beside it, separated by a thin vertical divider (standard brand-architecture, e.g. "Google Cloud"). Descriptor uses the brand teal (`~#1488B8`) in a complementary weight. This avoids recreating/altering the flat-PNG wordmark and carries no font-matching risk. If the original **vector source** (`.ai`/`.svg`/`.eps`/Figma) later surfaces, a fully-merged "…Dental Ent." wordmark remains an option, but is not required.
 - **Motion:** premium feel via **Framer Motion** (scroll/entrance animations) + a **subtle Three.js** hero accent + smooth scroll — reusing the consumer site's stack for family consistency and maintainability.
 - **HyperFrames:** *not* used for live-site animation (it renders HTML→MP4 video, server-side). Kept as a future option to produce an embedded hero **demo/explainer video**.
 
