@@ -32,7 +32,7 @@ export default function DemoForm({ defaultSegment = 'other', sourcePage = 'demo'
   if (state === 'done') {
     return (
       <div className={styles.done}>
-        <h3>Thanks — we'll be in touch shortly.</h3>
+        <h3>Thanks — we’ll be in touch shortly.</h3>
         <p>{delivered
           ? 'Our enterprise team has your request and will reach out within one business day.'
           : 'Your request is recorded. If you need us sooner, email enterprise@clearcaredentalgroup.com.'}</p>

@@ -33,7 +33,7 @@ export default function DemoPage() {
           <div className="eyebrow-plain">BOOK A DEMO</div>
           <h1 className={styles.heroH1}>See Clear Care Enterprise in action</h1>
           <p className={styles.heroSub}>
-            In 20 minutes, we'll show you exactly how Clear Care powers dental benefits
+            In 20 minutes, we’ll show you exactly how Clear Care powers dental benefits
             for your group — and what a rollout looks like from day one.
           </p>
         </Reveal>
@@ -46,7 +46,7 @@ export default function DemoPage() {
           {/* Left: value bullets + contacts */}
           <div className={styles.left}>
             <Reveal>
-              <h2 className={styles.valueH2}>What you'll see in the demo</h2>
+              <h2 className={styles.valueH2}>What you’ll see in the demo</h2>
               <ul className={styles.bullets}>
                 {VALUE_BULLETS.map((b, i) => (
                   <li key={i} className={styles.bullet}>
