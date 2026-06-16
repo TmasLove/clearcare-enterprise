@@ -15,7 +15,7 @@ const VALUE_BULLETS = [
 
 const CONTACTS = [
   { name: 'Jose Terry', title: 'CEO', email: 'jterry@clearcaredentalgroup.com' },
-  { name: 'Jordan Terry', title: 'Head of Sales', email: 'jordan@clearcaredentalgroup.com' },
+  { name: 'Jordan Terry', title: 'COO', email: 'jordan@clearcaredentalgroup.com' },
   { name: 'Tomas Roldan', title: 'CTO', email: 'troldan@clearcaredentalgroup.com' },
 ];
 
