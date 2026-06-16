@@ -14,10 +14,12 @@ const VALUE_BULLETS = [
 ];
 
 const CONTACTS = [
-  { name: 'Tommy Roldan', email: 'troldan@clearcaredentalgroup.com' },
-  { name: 'J. Terry', email: 'jterry@clearcaredentalgroup.com' },
-  { name: 'Jordan', email: 'jordan@clearcaredentalgroup.com' },
+  { name: 'Jose Terry', email: 'jterry@clearcaredentalgroup.com' },
+  { name: 'Jordan Terry', email: 'jordan@clearcaredentalgroup.com' },
+  { name: 'Tomas Roldan', email: 'troldan@clearcaredentalgroup.com' },
 ];
+
+const MAILTO_SUBJECT = encodeURIComponent('Clear Care Enterprise inquiry');
 
 export default function DemoPage() {
   return (
@@ -64,7 +66,9 @@ export default function DemoPage() {
                   {CONTACTS.map(c => (
                     <li key={c.email}>
                       <span className={styles.contactName}>{c.name}</span>
-                      <a href={`mailto:${c.email}`} className={styles.contactEmail}>{c.email}</a>
+                      <a href={`mailto:${c.email}?subject=${MAILTO_SUBJECT}`} className={styles.contactEmail}>
+                        Reach out →
+                      </a>
                     </li>
                   ))}
                 </ul>
