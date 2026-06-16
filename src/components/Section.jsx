@@ -1,9 +1,11 @@
 import Container from './Container';
+import styles from './Section.module.css';
+
 export default function Section({ children, variant = 'default', id }) {
-  const cls = variant === 'navy' ? 'surface-navy' : '';
-  const bg = variant === 'alt' ? 'var(--surface-1)' : undefined;
+  const navy = variant === 'navy' ? 'surface-navy' : '';
+  const alt = variant === 'alt' ? styles.alt : '';
   return (
-    <section id={id} className={cls} style={{ padding: '96px 0', background: bg }}>
+    <section id={id} className={`${styles.section} ${navy} ${alt}`.trim()}>
       <Container>{children}</Container>
     </section>
   );

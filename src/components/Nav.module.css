@@ -142,7 +142,7 @@
 }
 
 .mobileLink {
-  padding: 10px 0;
+  padding: 14px 0;
   font-weight: 500;
   color: var(--text-secondary);
   border-bottom: 1px solid var(--border-subtle);
@@ -154,7 +154,17 @@
 }
 
 @media (max-width: 768px) {
+  .inner { padding: 0 16px; gap: 12px; height: 60px; }
   .links { display: none; }
-  .hamburger { display: flex; }
-  .right .login { display: none; }
+  .right { display: none; }
+  .hamburger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    gap: 5px;
+  }
+  /* keep the logo lockup from overflowing the bar on small screens */
+  .nav img { height: 28px !important; }
 }

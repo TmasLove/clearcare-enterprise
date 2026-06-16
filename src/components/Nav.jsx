@@ -58,9 +58,10 @@ export default function Nav() {
           <Link key={s.to} to={s.to} className={styles.mobileLink} onClick={() => setMobileOpen(false)}>{s.label}</Link>
         ))}
         <Link to="/demo" className={styles.mobileLink} onClick={() => setMobileOpen(false)}>Demo</Link>
-        <Link to="/login" className={styles.mobileLink}>Login</Link>
-        <div style={{ paddingTop: 8 }}>
+        <Link to="/login" className={styles.mobileLink} onClick={() => setMobileOpen(false)}>Login</Link>
+        <div style={{ paddingTop: 12, display: 'flex', alignItems: 'center', gap: 12 }}>
           <Button to="/demo">Book a demo</Button>
+          <ThemeToggle />
         </div>
       </div>
     </nav>
