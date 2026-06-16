@@ -82,7 +82,7 @@ export default function DemoPage() {
             <Reveal delay={0.08}>
               <div className={styles.formWrap}>
                 <p className={styles.formLabel}>Fill out the form and our enterprise team will follow up within one business day.</p>
-                <DemoForm sourcePage="demo" />
+                <DemoForm sourcePage="enterprise" />
               </div>
             </Reveal>
           </div>

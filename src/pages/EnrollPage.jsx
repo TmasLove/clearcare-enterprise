@@ -43,7 +43,7 @@ export default function EnrollPage() {
       email: form.email,
       company: form.company,
       sourceAction: 'enroll',
-      sourcePage: 'enroll',
+      sourcePage: 'enterprise',
     });
     setState('done');
   }
