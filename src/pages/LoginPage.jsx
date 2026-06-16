@@ -38,7 +38,7 @@ export default function LoginPage() {
 
   return (
     <>
-      <Seo title="Sign in" />
+      <Seo title="Sign in" path="/login" />
       <div className={styles.wrap}>
         <div className={styles.card}>
           <div className={styles.header}>

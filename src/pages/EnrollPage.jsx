@@ -53,6 +53,7 @@ export default function EnrollPage() {
       <Seo
         title="Get started"
         description="Start offering modern dental benefits to your team — set up in days, not quarters."
+        path="/enroll"
       />
 
       {/* Hero */}

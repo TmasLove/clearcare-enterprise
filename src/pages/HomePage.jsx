@@ -116,6 +116,7 @@ export default function HomePage() {
       <Seo
         title=""
         description="The dental benefits platform for employers, TPAs, DSOs, associations, and white-label partners."
+        path="/"
       />
 
       {/* ── 1. Hero ─────────────────────────────────────────────────────── */}

@@ -27,6 +27,7 @@ export default function DemoPage() {
       <Seo
         title="Book a demo"
         description="See Clear Care Enterprise in action. Book a 20-minute demo with our enterprise team and discover how Clear Care powers dental benefits for employers, TPAs, DSOs, and partners."
+        path="/demo"
       />
 
       {/* Navy hero */}

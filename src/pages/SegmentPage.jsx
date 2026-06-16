@@ -19,13 +19,44 @@ import styles from './SegmentPage.module.css';
 
 const MAP = { employers, tpa, dso, associations, whiteLabel };
 
+function buildJsonLd(c, slug) {
+  const urlPath = '/solutions/' + (slug === 'whiteLabel' ? 'white-label' : slug);
+
+  const faqPage = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: c.faqs.map(({ q, a }) => ({
+      '@type': 'Question',
+      name: q,
+      acceptedAnswer: { '@type': 'Answer', text: a },
+    })),
+  };
+
+  const service = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: c.h1,
+    serviceType: 'Dental benefits platform',
+    areaServed: 'US',
+    provider: {
+      '@type': 'Organization',
+      name: 'Clear Care Dental Enterprise',
+      url: 'https://clearcaredentalenterprise.com',
+    },
+  };
+
+  return { jsonLd: [faqPage, service], urlPath };
+}
+
 export default function SegmentPage({ slug }) {
   const c = useMemo(() => MAP[slug], [slug]);
+  const { jsonLd, urlPath } = useMemo(() => (c ? buildJsonLd(c, slug) : { jsonLd: [], urlPath: '' }), [c, slug]);
+
   if (!c) return null;
 
   return (
     <>
-      <Seo title={c.h1} description={c.subhead} />
+      <Seo title={c.h1} description={c.subhead} path={urlPath} jsonLd={jsonLd} />
 
       {/* 1. Hero */}
       <Section variant="navy">

@@ -24,6 +24,7 @@ export default function SolutionsHubPage() {
       <Seo
         title="Solutions"
         description="One platform. Every way to offer dental — for employers, TPAs, DSOs, associations, and white-label partners."
+        path="/solutions"
       />
 
       {/* Hero */}
