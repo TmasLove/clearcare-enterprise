@@ -1,0 +1,29 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-enterprise
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy enterprise marketing site
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.CLEARCARE_DEPLOY_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H "${{ secrets.CLEARCARE_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Trigger restricted deploy
+        run: |
+          ssh -i ~/.ssh/deploy_key \
+              -o StrictHostKeyChecking=yes \
+              "${{ secrets.CLEARCARE_USER }}@${{ secrets.CLEARCARE_HOST }}" \
+              enterprise
