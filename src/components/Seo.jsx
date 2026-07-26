@@ -7,7 +7,14 @@ export default function Seo({ title, description, path, jsonLd }) {
     ? `${title} — Clear Care Dental Enterprise`
     : 'Clear Care Dental Enterprise';
 
-  const canonical = path ? `${BASE_URL}${path}` : undefined;
+  // vite-react-ssg prerenders each route to <route>/index.html, which the server
+  // serves at the TRAILING-SLASH url and 301s the slashless form onto. So the
+  // canonical must carry the slash too — a canonical pointing at a URL that
+  // redirects is a conflicting signal and Google declines to index the page.
+  // (This is what stranded /demo, /enroll and /solutions/* in Search Console's
+  // "Discovered - currently not indexed".) Root is already "/", leave it alone.
+  const canonicalPath = path && path !== '/' && !path.endsWith('/') ? `${path}/` : path;
+  const canonical = canonicalPath ? `${BASE_URL}${canonicalPath}` : undefined;
 
   const schemas = jsonLd
     ? Array.isArray(jsonLd)
