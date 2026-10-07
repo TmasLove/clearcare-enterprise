@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { validateLead } from '../lib/validateLead';
 import { submitLead } from '../lib/leads';
 import Button from './Button';
+import Turnstile, { TURNSTILE_SITE_KEY } from './Turnstile';
 import styles from './DemoForm.module.css';
 
 const SEGMENTS = [
@@ -14,18 +15,29 @@ const SEGMENTS = [
 ];
 
 export default function DemoForm({ defaultSegment = 'other', sourcePage = 'demo' }) {
-  const [form, setForm] = useState({ name:'', email:'', phone:'', company:'', companySize:'1-50', segment: defaultSegment, message:'' });
+  const [form, setForm] = useState({ name:'', email:'', phone:'', company:'', companySize:'1-50', segment: defaultSegment, message:'', website:'' });
   const [errors, setErrors] = useState({});
   const [state, setState] = useState('idle'); // idle | submitting | done
   const [delivered, setDelivered] = useState(true);
+  const [serverError, setServerError] = useState(null);
+  const [captchaToken, setCaptchaToken] = useState(null);
+  const [captchaKey, setCaptchaKey] = useState(0); // bump to get a fresh token
+  const captchaPending = Boolean(TURNSTILE_SITE_KEY) && !captchaToken;
   const set = (k) => (e) => setForm(f => ({ ...f, [k]: e.target.value }));
 
   async function onSubmit(e) {
     e.preventDefault();
+    if (form.website) { setState('done'); return; } // bot trap
     const v = validateLead(form);
     if (!v.ok) { setErrors(v.errors); return; }
-    setErrors({}); setState('submitting');
-    const r = await submitLead({ ...form, sourcePage, sourceAction: 'demo' });
+    if (captchaPending) { setServerError('One moment, we are checking you are not a bot.'); return; }
+    setErrors({}); setServerError(null); setState('submitting');
+    const r = await submitLead({ ...form, sourcePage, sourceAction: 'demo', turnstileToken: captchaToken || undefined });
+    if (!r.ok) {
+      setServerError(r.error); setState('idle');
+      setCaptchaToken(null); setCaptchaKey(k => k + 1); // tokens are single-use
+      return;
+    }
     setDelivered(r.delivered); setState('done');
   }
 
@@ -63,7 +75,15 @@ export default function DemoForm({ defaultSegment = 'other', sourcePage = 'demo'
         </Field>
       </div>
       <Field label="What are you looking to solve?"><textarea rows={4} value={form.message} onChange={set('message')} /></Field>
-      <Button type="submit">{state === 'submitting' ? 'Sending…' : 'Book a demo'}</Button>
+      {/* Honeypot: hidden from people and screen readers; bots fill it. */}
+      <input
+        type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true"
+        value={form.website} onChange={set('website')}
+        style={{ position: 'absolute', left: '-10000px', width: 1, height: 1, overflow: 'hidden' }}
+      />
+      <Turnstile key={captchaKey} onToken={setCaptchaToken} />
+      {serverError && <em className={styles.err} role="alert">{serverError}</em>}
+      <Button type="submit" disabled={state === 'submitting' || captchaPending}>{state === 'submitting' ? 'Sending…' : 'Book a demo'}</Button>
     </form>
   );
 }

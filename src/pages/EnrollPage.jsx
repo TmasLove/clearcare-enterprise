@@ -5,6 +5,7 @@ import Logo from '../components/Logo';
 import Section from '../components/Section';
 import Reveal from '../components/Reveal';
 import { submitLead } from '../lib/leads';
+import Turnstile, { TURNSTILE_SITE_KEY } from '../components/Turnstile';
 import styles from './EnrollPage.module.css';
 
 // TODO(Plan-B/enroll-api): When the employer self-enroll API is live, replace the
@@ -13,9 +14,13 @@ import styles from './EnrollPage.module.css';
 // Until then, this form captures a hot lead so the team can manually provision.
 
 export default function EnrollPage() {
-  const [form, setForm] = useState({ name: '', email: '', company: '' });
+  const [form, setForm] = useState({ name: '', email: '', company: '', website: '' });
   const [errors, setErrors] = useState({});
   const [state, setState] = useState('idle'); // idle | submitting | done
+  const [serverError, setServerError] = useState(null);
+  const [captchaToken, setCaptchaToken] = useState(null);
+  const [captchaKey, setCaptchaKey] = useState(0); // bump to get a fresh token
+  const captchaPending = Boolean(TURNSTILE_SITE_KEY) && !captchaToken;
 
   const set = (k) => (e) => setForm(f => ({ ...f, [k]: e.target.value }));
 
@@ -31,20 +36,32 @@ export default function EnrollPage() {
 
   async function onSubmit(e) {
     e.preventDefault();
+    if (form.website) { setState('done'); return; } // bot trap
     const errs = validate();
     if (Object.keys(errs).length > 0) {
       setErrors(errs);
       return;
     }
+    if (captchaPending) { setServerError('One moment, we are checking you are not a bot.'); return; }
     setErrors({});
+    setServerError(null);
     setState('submitting');
-    await submitLead({
+    const r = await submitLead({
       name: form.name,
       email: form.email,
       company: form.company,
       sourceAction: 'enroll',
       sourcePage: 'enterprise',
+      website: form.website,
+      turnstileToken: captchaToken || undefined,
     });
+    if (!r.ok) {
+      setServerError(r.error);
+      setState('idle');
+      setCaptchaToken(null);
+      setCaptchaKey(k => k + 1); // tokens are single-use
+      return;
+    }
     setState('done');
   }
 
@@ -130,10 +147,19 @@ export default function EnrollPage() {
                       {errors.company && <em className={styles.err} role="alert">{errors.company}</em>}
                     </label>
 
+                    {/* Honeypot: hidden from people and screen readers; bots fill it. */}
+                    <input
+                      type="text" name="website" tabIndex={-1} autoComplete="off" aria-hidden="true"
+                      value={form.website} onChange={set('website')}
+                      style={{ position: 'absolute', left: '-10000px', width: 1, height: 1, overflow: 'hidden' }}
+                    />
+                    <Turnstile key={captchaKey} onToken={setCaptchaToken} />
+                    {serverError && <em className={styles.err} role="alert">{serverError}</em>}
+
                     <button
                       type="submit"
                       className={styles.submitBtn}
-                      disabled={state === 'submitting'}
+                      disabled={state === 'submitting' || captchaPending}
                     >
                       {state === 'submitting' ? 'Submitting…' : 'Get started'}
                     </button>
