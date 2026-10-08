@@ -44,6 +44,10 @@ export default function Footer() {
           <div className={styles.legal}>
             <a href="https://clearcaredentalgroup.com/privacy" target="_blank" rel="noopener noreferrer">Privacy</a>
             <a href="https://clearcaredentalgroup.com/terms" target="_blank" rel="noopener noreferrer">Terms</a>
+            {/* Builder credit, same as nstpharma.com. A plain followable link on
+                purpose (no nofollow/sponsored/ugc) so search engines count it
+                toward tommyroldan.com; prerendered, so it is in the served HTML. */}
+            <a href="https://tommyroldan.com/" target="_blank" rel="noopener">Made by TommyOS</a>
           </div>
         </div>
       </div>
