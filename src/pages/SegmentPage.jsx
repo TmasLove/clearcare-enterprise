@@ -56,7 +56,7 @@ export default function SegmentPage({ slug }) {
 
   return (
     <>
-      <Seo title={c.h1} description={c.subhead} path={urlPath} jsonLd={jsonLd} />
+      <Seo title={c.h1} fullTitle={c.seoTitle} description={c.seoDescription || c.subhead} path={urlPath} jsonLd={jsonLd} />
 
       {/* 1. Hero */}
       <Section variant="navy">

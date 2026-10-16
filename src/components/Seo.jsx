@@ -2,10 +2,12 @@ import { Head } from 'vite-react-ssg';
 
 const BASE_URL = 'https://clearcaredentalenterprise.com';
 
-export default function Seo({ title, description, path, jsonLd }) {
-  const fullTitle = title
-    ? `${title} — Clear Care Dental Enterprise`
-    : 'Clear Care Dental Enterprise';
+// `fullTitle` is a complete, hand-written <title> for pages tuned to specific
+// searches (keywords first, short brand suffix, ~60 chars). Without it the
+// title is `${title} — Clear Care Dental Enterprise`.
+export default function Seo({ title, fullTitle: fullTitleOverride, description, path, jsonLd }) {
+  const fullTitle = fullTitleOverride
+    || (title ? `${title} — Clear Care Dental Enterprise` : 'Clear Care Dental Enterprise');
 
   // vite-react-ssg prerenders each route to <route>/index.html, which the server
   // serves at the TRAILING-SLASH url and 301s the slashless form onto. So the

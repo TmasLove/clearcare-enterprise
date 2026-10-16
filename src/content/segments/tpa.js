@@ -1,9 +1,16 @@
 export default {
   slug: 'tpa',
-  eyebrow: 'FOR TPAs & HEALTH PLAN ADMINISTRATORS',
-  h1: 'A dental benefits engine you can administer at scale',
+  eyebrow: 'DENTAL TPA PLATFORM · FOR THIRD-PARTY ADMINISTRATORS & HEALTH PLANS',
+  // Search Console (90 days to 2026-10-14): 404 impressions at ~position 71 for
+  // "dental tpa platform", "dental benefits administration software/platform",
+  // "dental third party administrator". The old title and headline used none of
+  // those words. Claims-processing queries are deliberately NOT targeted:
+  // Clear Care is a membership program and does not adjudicate claims.
+  seoTitle: 'Dental TPA Platform & Benefits Administration Software | Clear Care',
+  seoDescription: 'Dental benefits administration software for TPAs: run every client group from one account, with real-time eligibility, per-group billing and reporting.',
+  h1: 'Dental benefits administration software, built for TPAs',
   subhead:
-    'Add a turnkey dental program to the plans you administer — with the eligibility, billing, and reporting controls you already expect.',
+    'A turnkey dental TPA platform for third-party administrators and health plan administrators. Add dental to the plans you administer, with the eligibility, billing, and reporting controls you already expect.',
   pains: [
     'Bolting dental onto existing plans means juggling another vendor, another system, and another support escalation path.',
     'Clients demand modern, app-first member experiences that legacy dental carriers simply can\'t deliver.',
@@ -73,6 +80,14 @@ export default {
     'Utilization & billing reporting',
   ],
   faqs: [
+    {
+      q: 'What is a dental TPA platform, and how is Clear Care different?',
+      a: 'A dental TPA platform is the software a third-party administrator uses to offer and run dental for the employer groups it serves: eligibility, billing, reporting, and member support. Clear Care covers all of that from one administrator account, and adds what most dental benefits administration software leaves out: a modern member app and live concierge support, so your clients\' members are looked after without your team building or staffing anything.',
+    },
+    {
+      q: 'Is Clear Care dental insurance?',
+      a: 'No. Clear Care is a dental membership program, not insurance. Members get included preventive visits and prices their concierge negotiates with the dentist before treatment, with no claim forms or annual maximums. That keeps administration simple: there are no insurance claims for your team to adjudicate.',
+    },
     {
       q: 'Can we manage multiple employer groups from a single TPA account?',
       a: 'Yes — this is the core design. Your TPA account is the top-level entity. Each client group sits beneath it with its own isolated eligibility roster, billing record, and reporting view. You never need to log out and back in to switch between clients.',
