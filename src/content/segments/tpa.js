@@ -6,7 +6,7 @@ export default {
   // "dental third party administrator". The old title and headline used none of
   // those words. Claims-processing queries are deliberately NOT targeted:
   // Clear Care is a membership program and does not adjudicate claims.
-  seoTitle: 'Dental TPA Platform & Benefits Administration Software | Clear Care',
+  seoTitle: 'Dental TPA Platform & Benefits Admin Software | Clear Care',
   seoDescription: 'Dental benefits administration software for TPAs: run every client group from one account, with real-time eligibility, per-group billing and reporting.',
   h1: 'Dental benefits administration software, built for TPAs',
   subhead:

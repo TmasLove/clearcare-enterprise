@@ -1,6 +1,7 @@
 export default {
   slug: 'employers',
   eyebrow: 'FOR EMPLOYERS & SMALL BUSINESS',
+  seoTitle: 'Dental Benefits for Employers & Small Business | Clear Care',
   h1: 'Dental benefits your team will actually use',
   subhead:
     'Give employees real dental coverage without the cost and complexity of traditional insurance — set up in days, not quarters.',

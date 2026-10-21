@@ -11,7 +11,7 @@ describe('segment search titles and descriptions', () => {
   for (const [name, seg] of Object.entries(ALL)) {
     if (!seg.seoTitle && !seg.seoDescription) continue;
     it(`${name}: fits what Google shows`, () => {
-      if (seg.seoTitle) expect(seg.seoTitle.length).toBeLessThanOrEqual(70);
+      if (seg.seoTitle) expect(seg.seoTitle.length).toBeLessThanOrEqual(60);
       if (seg.seoDescription) expect(seg.seoDescription.length).toBeLessThanOrEqual(155);
     });
     it(`${name}: never sells the program as insurance`, () => {

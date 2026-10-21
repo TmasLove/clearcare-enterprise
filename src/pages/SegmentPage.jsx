@@ -60,7 +60,7 @@ export default function SegmentPage({ slug }) {
 
       {/* 1. Hero */}
       <Section variant="navy">
-        <Reveal>
+        <Reveal instant>
           <div className="eyebrow-plain">{c.eyebrow}</div>
           <h1 className={styles.h1}>{c.h1}</h1>
           <p className={styles.sub}>{c.subhead}</p>

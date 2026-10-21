@@ -2,7 +2,7 @@ export default {
   slug: 'associations',
   eyebrow: 'FOR ASSOCIATIONS & MEMBER GROUPS',
   // What Google shows. Keywords first; the page headline stays as designed.
-  seoTitle: 'Dental Benefits for Associations & Member Groups | Clear Care',
+  seoTitle: 'Association Dental Benefits for Member Groups | Clear Care',
   seoDescription: "Give members a dental benefit they'll use. We brand, launch and support it: app-first enrollment, adoption reporting, no billing work for your staff.",
   h1: 'A dental benefit your members will value',
   subhead:

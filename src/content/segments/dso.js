@@ -1,6 +1,7 @@
 export default {
   slug: 'dso',
   eyebrow: 'FOR DSOs & DENTAL GROUPS',
+  seoTitle: 'In-House Dental Membership Plans for DSOs | Clear Care',
   h1: 'Fill chairs with your own membership plan',
   subhead:
     'Launch a branded in-house dental membership across your practices — drive recurring revenue and patient loyalty without insurance friction.',

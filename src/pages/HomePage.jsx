@@ -114,8 +114,8 @@ export default function HomePage() {
   return (
     <>
       <Seo
-        title=""
-        description="The dental benefits platform for employers, TPAs, DSOs, associations, and white-label partners."
+        fullTitle="Clear Care Enterprise: Dental Benefits Platform for Partners"
+        description="One platform for employers, TPAs, DSOs, associations, and white-label partners to offer, administer, and grow dental benefits."
         path="/"
       />
 
@@ -170,7 +170,7 @@ export default function HomePage() {
         />
 
         <div className={styles.heroInner}>
-          <Reveal>
+          <Reveal instant>
             <div className="eyebrow-plain">ENTERPRISE DENTAL BENEFITS</div>
 
             <h1 className={styles.heroH1}>

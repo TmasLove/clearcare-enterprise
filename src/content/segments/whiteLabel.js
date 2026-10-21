@@ -1,6 +1,7 @@
 export default {
   slug: 'whiteLabel',
   eyebrow: 'WHITE-LABEL / PARTNER PROGRAM',
+  seoTitle: 'White-Label Dental Membership Platform | Clear Care',
   h1: 'Your brand, our dental benefits engine',
   subhead:
     'Resell a complete dental membership platform under your own brand — we run the technology, payments, and member experience behind the scenes.',
